@@ -1,0 +1,34 @@
+# APB Protocol Notes
+
+## AMBA
+Advanced Microcontroller Bus Architecture
+
+## APB Signals
+
+- PCLK : Clock signal
+- PRESETn : Active low reset
+- PSEL : Selects the slave
+- PENABLE : Indicates enable phase
+- PWRITE : 1 = Write, 0 = Read
+- PADDR : Address bus
+- PWDATA : Write data (Master → Slave)
+- PRDATA : Read data (Slave → Master)
+- PREADY : Slave ready signal
+- PSLVERR : Error signal
+
+## APB Transaction
+
+### Setup Phase
+- PSEL = 1
+- PENABLE = 0
+
+### Enable Phase
+- PSEL = 1
+- PENABLE = 1
+
+## Why APB?
+
+- Simple protocol
+- Low power
+- Used for peripherals
+- Suitable for UART, GPIO, Timer, SPI
