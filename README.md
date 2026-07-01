@@ -25,6 +25,12 @@ waveforms/
 
 ## Tools
 - SystemVerilog
+- - UVM
+- QuestaSim / EDA Playground
+
+
+
+
 
 ## flow_chart
                  APB Master
@@ -44,5 +50,26 @@ waveforms/
           Sequence
               │
              Test
-- UVM
-- QuestaSim / EDA Playground
+
+
+
+APB_UVM_Verification/
+│
+├── rtl/          ← DUT (Design Under Test)
+│      apb_slave.sv
+│
+├── tb/           ← Testbench files
+│      apb_if.sv
+│      top.sv
+│
+├── uvm/          ← UVM classes
+│      apb_transaction.sv
+│      apb_driver.sv
+│      apb_monitor.sv
+│      apb_agent.sv
+│      apb_env.sv
+│      apb_test.sv
+│
+├── assertions/
+├── coverage/
+└── README.md
