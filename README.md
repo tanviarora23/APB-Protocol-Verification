@@ -25,5 +25,24 @@ waveforms/
 
 ## Tools
 - SystemVerilog
+
+## flow_chart
+                 APB Master
+                     │
+                     ▼
+              +---------------+
+              | APB Slave DUT |
+              +---------------+
+                     ▲
+                     │
+              ----------------
+              │              │
+         Driver          Monitor
+              │              │
+         Sequencer      Scoreboard
+              │
+          Sequence
+              │
+             Test
 - UVM
 - QuestaSim / EDA Playground
