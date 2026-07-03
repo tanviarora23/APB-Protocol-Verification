@@ -14,8 +14,13 @@ class apb_monitor extends uvm_monitor;
   endfunction
 
   function void build_phase(uvm_phase phase);
+
     super.build_phase(phase);
-  endfunction
+
+    if(!uvm_config_db#(virtual apb_if)::get(this, "", "vif", vif))
+        `uvm_fatal("NOVIF", "Virtual Interface not found");
+
+endfunction
 task run_phase(uvm_phase phase);
 
     forever begin
