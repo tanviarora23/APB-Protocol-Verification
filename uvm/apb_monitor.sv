@@ -16,9 +16,23 @@ class apb_monitor extends uvm_monitor;
   function void build_phase(uvm_phase phase);
     super.build_phase(phase);
   endfunction
+task run_phase(uvm_phase phase);
 
-  task run_phase(uvm_phase phase);
-    super.run_phase(phase);
-  endtask
+    forever begin
 
+        @(posedge vif.PCLK);
+
+        if(vif.PSEL && vif.PENABLE) begin
+
+            tr = apb_transaction::type_id::create("tr");
+
+            tr.addr  = vif.PADDR;
+            tr.data  = vif.PWRITE ? vif.PWDATA : vif.PRDATA;
+            tr.write = vif.PWRITE;
+
+        end
+
+    end
+
+endtask
 endclass
