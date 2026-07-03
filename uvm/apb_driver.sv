@@ -19,8 +19,13 @@ class apb_driver extends uvm_driver #(apb_transaction);
 
   // Build Phase
   function void build_phase(uvm_phase phase);
+
     super.build_phase(phase);
-  endfunction
+
+    if(!uvm_config_db#(virtual apb_if)::get(this, "", "vif", vif))
+        `uvm_fatal("NOVIF", "Virtual Interface not found");
+
+endfunction
 
   // Run Phase
  task run_phase(uvm_phase phase);
