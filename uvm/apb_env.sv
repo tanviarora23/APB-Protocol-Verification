@@ -6,6 +6,7 @@ class apb_env extends uvm_env;
   `uvm_component_utils(apb_env)
 
   apb_agent agent;
+  apb_scoreboard sb;
 
   function new(string name = "apb_env",
                uvm_component parent);
@@ -16,7 +17,8 @@ class apb_env extends uvm_env;
     super.build_phase(phase);
 
     agent = apb_agent::type_id::create("agent", this);
+    sb    = apb_scoreboard::type_id::create("sb", this);
 
-  endfunction
+endfunction
 
 endclass
