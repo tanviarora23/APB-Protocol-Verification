@@ -23,8 +23,31 @@ class apb_driver extends uvm_driver #(apb_transaction);
   endfunction
 
   // Run Phase
-  task run_phase(uvm_phase phase);
-    super.run_phase(phase);
-  endtask
+ task run_phase(uvm_phase phase);
+
+    forever begin
+
+        seq_item_port.get_next_item(tr);
+
+        vif.PSEL    <= 1;
+        vif.PENABLE <= 0;
+        vif.PADDR   <= tr.addr;
+        vif.PWDATA  <= tr.data;
+        vif.PWRITE  <= tr.write;
+
+        @(posedge vif.PCLK);
+
+        vif.PENABLE <= 1;
+
+        @(posedge vif.PCLK);
+
+        vif.PSEL    <= 0;
+        vif.PENABLE <= 0;
+
+        seq_item_port.item_done();
+
+    end
+
+endtask
 
 endclass
