@@ -26,9 +26,13 @@ task run_phase(uvm_phase phase);
 
             tr = apb_transaction::type_id::create("tr");
 
-            tr.addr  = vif.PADDR;
-            tr.data  = vif.PWRITE ? vif.PWDATA : vif.PRDATA;
-            tr.write = vif.PWRITE;
+            tr.PADDR  = vif.PADDR;
+            tr.PWRITE = vif.PWRITE;
+
+            if(vif.PWRITE)
+                tr.PWDATA = vif.PWDATA;
+            else
+                tr.PRDATA = vif.PRDATA;
 
         end
 
